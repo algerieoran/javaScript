@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sélecteurs</title>
+</head>
+<body>
+    <section id="section1">Sélection par l'id</section>
+    <br>
+    <section id="section2">Sélection par getElementById</section>
+    <br>
+
+    <span>Sélection par get ElementsByTagName</span>
+    <br>
+
+    <div class="lesDiv">div0 sélectionné par getElementsByClassName</div>
+    <div class="lesDiv">div1 sélectionné par getElementsByClassName</div>
+    <div class="lesDiv">div2 sélectionné par getElementsByClassName</div>
+
+    <p>paragraphe 0 sélectionné par querySector </p>
+    <p>paragraphe 1 sélectionné par querySector </p>
+    <p>paragraphe 2 sélectionné par querySector </p>
+    <p>paragraphe 3 sélectionné par querySector </p>
+
+   <!-- exercice -->
+    <article class="exo">lorem ipsum</article>
+    <article class="exo">lorem ipsum</article>
+    <article class="exo">lorem ipsum</article>
+    <article class="exo">lorem ipsum</article>
+
+
+    <script>
+        //---------------------------------------
+        // Présentation du DOM
+        //---------------------------------------
+        /*
+        Le DOM pour document Objet Model, est un programe (API) interne au navigateur qui fait en sorte que :
+        -chaque balise html,
+        -chaque attribut des balises html,
+        -chaque événement produit dans le navigateur deviennent des objets récupérables et manupulables par le javaScript.
+        */
+        // L'objet window :
+        // L'objet window est l'objet global qui représente le navigateur :
+        //window.alert('Salut');
+        // il est aussi le seul qui peut être utilisé de manière implicite (sans l'écrir) :
+        //alert('Salut');
+
+        // L'objet document :
+        //Il représente le document html. notez que nous somme obligés de l'écrire (il n'est pas implicite...).
+
+
+        //-------------------------------------------
+        // Les Sélécteurs
+        //-------------------------------------------
+        //Un sélecteur permet de sélectionné une ou plusieurs balises du document html
+
+        //-----------------------
+        //Sélecteur directe par l'id :
+        var monId1 = section1;  // (pas de quote car c'est un objet) tous les ids sont atteignables par leurs nom : section1 est en fait un objet créé par le DOM qui représente la balise d'id "section1"
+
+        monId1.onclick = function() {  // onclick est un évenement qui déclanche la fonction anonyme qui suit lors du clic sur la balise stockée dans monId1
+            alert(monId1.innerHTML);  // innerHTML est une propriété qui contient le contenu HTML présent entre les balises de monId1
+        };
+
+
+        //--------------------------
+        // Sélection par le nom de l'id :
+        //--------------------------
+        var monId2 = document.getElementById('section2');  // ici sélectionne la balise d'id "section2" et cée un objet qui la représente
+        monId2.onclick = function() {
+            alert(monId2.innerHTML);
+        };
+
+        //--------------------------
+        // Sélection par le nom de la balise :
+        var mabalise = document.getElementsByTagName('span'); //sélectionne TOUTE les balises de type "span" sous forme d'un objet contenant des différentes balises sous forme d'objet elles memes avec un indice numérique
+
+        mabalise[0].onclick = function() { //on indique donc un indice obligatoirement l'indice de l'élement que l'on veut cybler en particulier, ici le premier (et le seul)
+            alert(mabalise[0].innerHTML)
+        };
+
+        // ------------------------------
+        // sélection par le nom de la classe :
+        var mesclasses = document.getElementsByClassName('lesDiv'); // sélectionne TOUTES les balises de class " lesDiv" => il faudera indiquer l'indice du l'element que l'on veut cybler
+        mesclasses[0].onclick = function() { // this se réfer à l'objet dans lequel je me situe, celui qui porte l'évenement : ici il s'agit de mesClasses[o]
+            alert(mesclasses[0].innerHTML); // on peut remplacer "alert(mesclasses[0].innerHTML);" par "alert(this.innerHTML);"
+        };
+        mesclasses[1].onclick = function() {
+            alert(this.innerHTML); // on peut remplacer "alert(mesclasses[1].innerHTML);" par "alert(this.innerHTML);"
+        };
+        mesclasses[2].onclick = function() {
+            alert(this.innerHTML); // on peut remplacer "alert(mesclasses[2].innerHTML);" par "alert(this.innerHTML);"
+        };
+
+        // on observe donc que l'on peut faire une boucle pour ne pas répéter ces lignes de codes.
+        
+
+        // ------------------------------
+        // sélection avec querySélecteur :
+        var p = document.querySelector('p');  // sélectionne le PREMIER élément trouvé correspondant au sélecteur CSS indiquer dans les parenthèses () vous y mettez n'importe quel sélecteur CSS : pour les ids #monId, pour les classes .maClasse, etc.
+        
+        p.onclick = function() {
+            alert(this.innerHTML); // this se réfère à p sur lequel on a cliquer
+        };
+
+        // ------------------------------
+        // sélection aves querySélecteurALL :
+        var lesP = document.querySelectorAll('p');  // sélectionne tous les éléments qui correspondent au sélecteur CSS précisé, dans l'ordre dans lequel ils apparaissent dans la html. Par voie de conséquence , il faut préciser l'indice que on veut cibler
+        
+        //on fait une boucle pour parcourir les 4 <p> :
+        for (var i = 0; i< lesP.length; i++){  // lesP.lenght vaut 4 (=nombre de paragraphes) 
+            lesP[i].onclick = function(){ // on acroche un événement click sur chaque paragraphe. La fonction qui suit ATTEND l'ordre du click (c'est-à-dir que l'internaute a cliqué) por s'exécuter.
+                alert(this.innerHTML); // this se réfère au paragraphe sur lequel l'internaute a cliqué précisément
+            };
+        }
+
+        //--------------------------------
+        //Préambule à l'exercice : au clic sur la premiere section, son teste devient bleu  :
+        document.querySelector('#section1').onclick = function(){
+            this.style.color ='blue';  // on ajoute unattribut style à la balise #section1 dans lequel on met une propriété CSS color de valeur"blue". Après style vous pouvez écrire n'importe quelle propri'té CSS. Note : les propriétés CSS contenant un tiret s'écrivent sans celui-ci et avec une majescule : font-size devient fontSize
+        };
+
+
+
+
+        //-----------------------------Exercice---------------------------------------------
+        // Au clic sur le premier <article>, celui-ci devient bleu. En revenche, au clic sur les 3 autres <articles>, ceux-ci deviennent rouges.
+
+               var article1 = document.querySelector('article');
+               article1.onclick = function() {
+                this.style.color ='blue'; 
+                };
+
+                var lesArt = document.querySelectorAll('article');
+
+                for (var i = 1; i< lesArt.length; i++) {
+                    lesArt[i].onclick = function(){
+                        this.style.color ='red';
+                    };
+                }
+        //------------------------------------------------------------------------------
+
+
+
+
+
+
+        //------------------------------------
+        // 
+
+    </script>
+    
+</body>
+</html>

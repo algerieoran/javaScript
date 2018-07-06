@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>setInterval</title>
+    <style>
+        img{ width: 300px; height: 200px; }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="imgs/a.jpg" alt="slider" id="monImage">
+    </div>
+    
+
+    <script>
+        // la gestion du temps avec setinterval et clearInterval :
+        //slider qui s'arrête à la fin de 4 images
+
+        var images = ['imgs/a.jpg','imgs/b.jpg','imgs/c.jpg','imgs/d.jpg'];  //  les images du slider
+        var indice =1;  // car la premiere image est déjà dans le html
+        var baliseImage = document.querySelector('#monImage');
+
+        function changeImage(){
+            baliseImage.src = images[indice];
+            indice++;  // j'ajoute 1 // on passe à l'indice suivant pour accéder à la prochaine image
+            if(indice == images.length){
+                 // stopper le slider su image d// on arrete le slider quand indice vaut 4, c'est-à-dire quand on est hors du tableau :
+                 clearInterval(timer);  // on arrête l'action du setInterval identifié "timer"
+            } 
+        }
+
+        var timer = setInterval(changeImage, 2000);  // cette interVal() permet d'appeler la fonction changeImage toutes les 2000 millisecondes (=2  secondes). Pas de ()à la fonction changeImage sinon elle s'éxecute sans attendrede setInterval. Enfin, on identifie notre setInterval par un nom ("timer") pour pouvoire l'arreter plus tard
+
+
+
+
+
+
+    </script>
+</body>
+</html>
