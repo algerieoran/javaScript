@@ -24,7 +24,34 @@
 
     </form>
     <script>
-        // Exercice : lorsque vous êtes en focus ( = évènement "focus") sur un input, sa bordure devient rouge. Puis lorsque vous êtes en blur ( = évènement "blur") sur un input, sa bordure redevient normal. Utilisez addEventListener
+        // Exercice :----------------------------------------------------------
+        // lorsque vous êtes en focus ( = évènement "focus") sur un input, sa bordure devient rouge. Puis lorsque vous êtes en blur ( = évènement "blur") sur un input, sa bordure redevient normal. Utilisez addEventListener
+
+            var lesInputes = document.querySelectorAll('.focus');
+            function animInput() {
+                lesInputes.style.border = "2px solid red";
+            }
+            for ( var = i; i < 2; i++) {
+                lesInputes[0].onclick = function() {
+                    
+                }
+                
+            }
+            lesInputes.addEventListener('click', animInput);
+
+            // lesInputes.addEventListener('click', function())
+            //form.addEventListener("blur", function( event ) {
+            //event.style.border = "";    
+            //}, true);
+
+
+            //image.addEventListener('click', function() {
+            //image.style.border = '2px solid red';
+        
+        //});
+
+
+
     </script>
     
 </body>
