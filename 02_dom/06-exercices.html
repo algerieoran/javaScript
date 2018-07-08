@@ -5,52 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>exercice</title>
+    
 
 </head>
 <body>
-    <form method="" action="">
+    <form method="post" action="traitement.php">
+
         <label>Pseudo</label>
         <input type="text" name="Pseudo" id="Pseudo" class="focus">
-
-        <br>
-
+        <br><br>
         <label>Mot de passe</label>
         <input type="password" name="mdp" id="mdp" class="focus">
-
-        <br>
-
-        
+        <br> <br>
         <input type="submit" value="se connecter">
 
     </form>
+
     <script>
+
         // Exercice :----------------------------------------------------------
         // lorsque vous êtes en focus ( = évènement "focus") sur un input, sa bordure devient rouge. Puis lorsque vous êtes en blur ( = évènement "blur") sur un input, sa bordure redevient normal. Utilisez addEventListener
 
-            var lesInputes = document.querySelectorAll('.focus');
-            function animInput() {
-                lesInputes.style.border = "2px solid red";
-            }
-            for ( var = i; i < 2; i++) {
-                lesInputes[0].onclick = function() {
-                    
-                }
-                
-            }
-            lesInputes.addEventListener('click', animInput);
 
-            // lesInputes.addEventListener('click', function())
-            //form.addEventListener("blur", function( event ) {
-            //event.style.border = "";    
-            //}, true);
+       var mesInputs = document.getElementsByClassName('focus');
 
+       for ( var i = 0; i<mesInputs.length; i++ ) {
 
-            //image.addEventListener('click', function() {
-            //image.style.border = '2px solid red';
-        
-        //});
+        function couleu () {
+            this.style.border = '2px solid red';
+        }
+        function couleuOff () {
+            this.style.border = '';
+        }
 
+       }
+        mesInputs[0].addEventListener('focus',couleu);
+        mesInputs[0].addEventListener('mouseout',couleuOff);
 
+        mesInputs[1].addEventListener('focus',couleu);
+        mesInputs[1].addEventListener('mouseout',couleuOff);
 
     </script>
     
