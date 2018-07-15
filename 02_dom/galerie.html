@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Galerie</title>
+   <style>
+       body {background: #12121c;}
+        #galerie {
+            width: 750px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            border: 10px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
+        }
+        #galerie img {
+            width: 750px;
+            height: 500px;
+        }
+        .container{
+            width: 750px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 50vh;
+           transform: translateY(-50%);
+        }
+        .thumbnail  {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #fff;
+            margin: 10px 5px 0 0;
+            border-radius: 5px;
+        }
+        .thumbnail:hover {
+            cursor: pointer;
+        }
+        .titre {
+            height: 40px;
+            width: 100%;
+            font-size: 30px;
+            color: #fff;
+            background: #000;
+            opacity: 0.5;
+            position: absolute;
+            bottom: 0px;
+            padding-left: 10px;
+        }
+        .selected {
+            border: 2px solid #C63333;
+        }        
+
+   </style>
+
+</head>
+<body>
+<div class="container">
+    <div id="galerie">
+        <img src="imgs/a.jpg" alt="Corse">
+        <div class="titre">Corse</div>
+    </div>  
+
+    <div>
+        <img class="thumbnail selected" src="imgs/a.jpg"  alt="Corse">
+        <img class="thumbnail" src="imgs/b.jpg"  alt="Jura">
+        <img class="thumbnail" src="imgs/c.jpg"  alt="Bretagne">
+        <img class="thumbnail" src="imgs/d.jpg"  alt="Guadeloupe">
+    </div>
+</div>
+
+<script>
+//Correction
+
+//1° en cliquant sur une vignette, l'image apparait en grand dans la balise <img> du div#galerie :
+
+var images = document.querySelectorAll('.thumbnail');
+
+for (var i = 0; i < images.length; i++) {
+    images[i].addEventListener('click', function(){
+       document.querySelector('#galerie img').src =this.src;
+       // ici. on ne peut pas utiliser images [i] à la place, car quand l'internaute clique, la boucle est finie depuis très longtemps, est i vaut alors 4.images [4] n'existe pas !
+
+        document.querySelector('#galerie img').alt =this.alt;  // on prend le alt de la vignette cliquée (=this) et l'affecte au alt de l'image "#galerie img"
+
+        document.querySelector('.titre').textContent = this.alt;
+
+        // on met la bordure de la viniette rouge en blanc pour la "déselectionner" :
+        document.querySelector('.selected').classList.remove('selected'); // on retire la classe "selected" à la vignette qui possède la bordure rouge pour la mettre en blanc
+
+        // on ajoute la bordure rouge à la vignette cliquée avec la classe "selected" :
+        this.classList.add('selected');  // on ajoute la classe "selected à la vignette sur laquelle o, a cliqué (=this"
+
+});
+}
+
+
+</script>
+
+</body>
+</html>

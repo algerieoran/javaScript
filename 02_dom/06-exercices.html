@@ -31,20 +31,28 @@
 
        for ( var i = 0; i<mesInputs.length; i++ ) {
 
-        function couleu () {
+         mesInputs[i].addEventListener('focus',function () {
             this.style.border = '2px solid red';
-        }
-        function couleuOff () {
+        });
+        mesInputs[i].addEventListener('blur',function () {
             this.style.border = '';
+        });
         }
 
-       }
-        mesInputs[0].addEventListener('focus',couleu);
-        mesInputs[0].addEventListener('mouseout',couleuOff);
+       // correction avec une boucle-------------------------------------------------------
 
-        mesInputs[1].addEventListener('focus',couleu);
-        mesInputs[1].addEventListener('mouseout',couleuOff);
+      /* var mesInputs = document.getElementsByClassName('focus');
 
+        for ( var i = 0; i<mesInputs.length; i++ ) {
+            mesInputs[i].addEventListener('focus',function () {
+            this.style.border = '2px solid red';
+        });
+        mesInputs[i].addEventListener('blur',function () {
+            this.style.border = '';
+        });
+       } */
+
+       
     </script>
     
 </body>

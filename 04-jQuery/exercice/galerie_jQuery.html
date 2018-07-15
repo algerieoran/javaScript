@@ -1,0 +1,111 @@
+<!--
+Implémentez le JavaScript de cette galerie d'images :
+		- 1° en cliquant sur une vignette, l'image apparaît en grand dans la balise <img> du div#galerie.
+		- 2° Puis vous ajoutez le titre sous l'image : il provient de l'attribut alt de la vignette.
+		- 3° Enfin vous mettez la bordure de la vignette sélectionnée en rouge (classe "selected").
+ -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Galerie</title>
+    <script src="jquery.js"> </script>
+    <style>
+        body {
+                background: #12121C;
+            }
+		#galerie {
+			width: 750px;
+			height: 500px;
+			overflow: hidden;
+			position: relative;
+			border: 10px solid #fff;
+            border-radius: 5px;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
+		}
+		#galerie img {
+			width: 750px;
+			height: 500px;
+		}
+		.container{
+			width: 750px;
+			height: 500px;
+			margin: 0 auto;
+			margin-top: 50vh; 
+            transform: translateY(-50%);
+		}
+		.thumbnail  {
+			width: 80px;
+			height: 80px;
+			border: 2px solid #fff;
+			margin: 10px 5px 0 0;
+			border-radius: 5px;
+		}
+		.thumbnail:hover {
+			cursor: pointer;
+		}
+		.titre {
+			height: 40px;
+			width: 100%;
+			font-size: 30px;
+			color: #fff;
+			background: #000;
+			opacity: 0.5;
+			position: absolute;
+			bottom: 0px;
+			padding-left: 10px;
+		}
+		.selected {
+			border: 2px solid #C63333;
+		}
+
+		
+    </style>
+</head>
+<body>
+<div class="container">
+	<div id="galerie">
+		<img src="imgs/a.jpg" alt="Corse">
+		<div class="titre">Corse</div>
+	</div>
+
+	<div>
+		<img class="thumbnail selected" src="imgs/a.jpg"  alt="Corse">
+		<img class="thumbnail" src="imgs/b.jpg"  alt="Jura">
+		<img class="thumbnail" src="imgs/c.jpg"  alt="Bretagne">
+		<img class="thumbnail" src="imgs/d.jpg"  alt="Guadeloupe">
+	</div>
+</div>
+
+
+<script>
+	$(function(){
+       
+        $('.thumbnail').click(function(){
+            var att = $(this).attr('src'); // variable pour le changement de la source
+            $('#galerie img').attr('src', att );  // changement de la src par celui sur lequel on a cliqué
+
+            var alt = $(this).attr('alt');  // var pour le alt
+            $('#galerie img').attr('alt', alt);  // on affecte le alt de celui sur lequel on clic
+
+            $('.titre').text(alt);  // titre dynamique qui part de l'alt
+
+            $('.selected').removeClass('selected');
+            $(this).addClass('selected');
+            
+        });
+
+
+
+
+
+
+
+
+    });
+
+</script>
+</body>
+</html>
