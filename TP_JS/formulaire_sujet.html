@@ -1,0 +1,239 @@
+<!-- 
+
+EXERCICE : 
+          HTML   : vous faites un formulaire dans la <section#formulaire> avec un champ "votre choix", une zone de texte "votre adresse" et un bouton "commander".
+
+          jQuery : vous rendez fonctionnel le formulaire :
+
+            Lors de la validation du formulaire, tous les champs doivent obligatoirement être remplis pour que celui-ci soit validé. Au cas où un champ est vide lors de la validation du formulaire, sa bordure devient rouge, sinon verte.
+
+            Quand on change la valeur d'un input, sa bordure reprend sa couleur par défaut.
+
+            Si le formulaire est validé, le remplacer par un message de confirmation "Votre commande a bien été prise en compte !".
+
+            Enfin, au clic sur une image, le numéro de l'image se reporte dans l'input "Choix" du formulaire de commande.
+
+
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Formulaire</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	
+  <style>
+      .container{
+        max-width: 900px;
+        margin: 0 auto 300px auto;
+      }
+      #portfolio, #formulaire {
+        border: 1px solid grey;
+        display: flex;
+        flex-flow: row wrap;
+      }
+      #formulaire {
+        padding: 20px;
+      }
+      .bloc {
+          width: 250px;
+          margin: 23px;
+          height: 165px;    
+      }
+      .bloc img {
+          width: 100%;
+          height: 165px; 
+      }
+      input, textarea {
+          display: inline-block;
+          padding: 5px 10px;
+          margin: 10px 0;
+          border: 1px solid;
+          background: #fff;
+          color: #888;
+          width: 200px;
+      }
+      input[type=submit] {
+          width: 220px;
+      }
+      label {
+        display: block;
+        color: #888;
+      }
+      .red {
+        border: 1px solid red;
+      }
+      .green {
+        border: 1px solid green;
+      }
+      .succes {
+        color: green;
+      }
+
+      /* ---------------- bonus ----------------- */
+     .vignette {
+        width: 250px;
+        height: 165px;
+        margin: auto;
+        display: block;
+      }
+
+  </style>
+
+
+</head>
+
+<body>
+  <main class="container">
+    <h1>Fonds d'écran</h1>
+
+    <h2>Choisissez une image</h2>
+      
+    <section id="portfolio">
+      <div class="bloc ciel all">
+        <img src="imgs/2.jpg" alt="" >
+        <div class="number">#1</div>
+      </div>
+      <div class="bloc montagne all">
+        <img src="imgs/3.jpg" alt="" >
+        <div class="number">#2</div>
+      </div>
+      <div class="bloc ciel all">
+        <img src="imgs/4.jpg" alt="" >
+        <div class="number">#3</div>
+      </div>
+      <div class="bloc mer all">
+        <img src="imgs/6.jpg" alt="" >
+        <div class="number">#4</div>
+      </div>
+      <div class="bloc montagne all">
+        <img src="imgs/a.jpg" alt="" >
+        <div class="number">#5</div>
+      </div>
+      <div class="bloc montagne all">
+        <img src="imgs/b.jpg" alt="" >
+        <div class="number">#6</div>
+      </div>
+      <div class="bloc montagne all">
+        <img src="imgs/c.jpg" alt="" >
+        <div class="number">#7</div>
+      </div>
+      <div class="bloc mer all">
+        <img src="imgs/d.jpg" alt="" > 
+        <div class="number">#8</div>
+      </div>
+      <div class="bloc mer all">
+        <img src="imgs/e.jpg" alt="">
+        <div class="number">#9</div>
+      </div>
+    </section>
+     
+    <h2>Puis passez commande</h2>
+
+    <section id="formulaire">
+
+      <form method="POST" action="" id="form">
+
+        <div>
+          <label for="numero" >Votre choix</label>
+          <input type="text" id="numero" name="text ">
+        </div>
+       
+       <div>
+          <label for="adresse">Votre adresse</label>
+          <textarea name="adresse" id="adresse"></textarea>
+       </div>
+        
+        <div><input type="submit" value="commander"></div>
+        
+      </form>
+      <img src="" alt="" class="vignette">
+      
+    </section>
+  </main>
+
+
+<script>
+  $(function (){
+
+    var champChoix = $('#numero');
+    var champAdresse   = $('#adresse');
+    // validation de la commande : on vérifie les 2 champs :
+
+    $('#form').submit(function(event){
+      var erreur = false; //car pas erreur au début 
+
+      // on verifie le champ choix
+      if (champChoix.val().trim().length == 0) {
+        champChoix.addClass('red'); 
+        erreur = true;
+        
+      } else {
+        champChoix.addClass('green');
+      }
+
+      if (champAdresse.val().trim().length == 0) {
+        champAdresse.addClass('red'); 
+        erreur = true;
+      } else {
+      champAdresse.addClass('green');
+      }
+      
+
+
+       if (erreur === true) {
+        event.preventDefault();// bloque l'événement dont il dépend, ici le submit 
+        
+      } else {
+        $('#formulaire').text('Votre commande a bien été prise en compte ');
+        $('#formulaire').addClass('succes')
+        //document.querySelector('#form').textContent = 'Votre commande a bien été prise en compte ';
+      }
+
+    }); // fin du submit
+
+    // Quand on modifie la valeur d'un input, on remet la bordure à son état par défaut
+    
+    champChoix.on('change', function(){
+    $(this).removeClass('green red');
+    });
+
+
+    champAdresse.on('change', function(){
+    $('this').removeClass('red green'); 
+    
+    });
+
+    // Au clic sur une image, son numéro se reporte dans l'input "champChoix"
+    $('#portfolio img').click(function(){
+      var chiffre = $(this).next().html(); // on sélectionne la balise directement suivante de l'image cliquée (=this) dont on prend le contenu HTML
+      champChoix.val(chiffre);
+
+      // l'image s'affiche sous forme de vignette à coté du foemulaire
+      if ($('.vignette').length == 0) {
+        // si l'objet jSuery représente les classes "vignette" a une longeur de 0, c'est qu'il est vide : la balise de classe vignette n'existe pas.
+
+        // on cée donc cette balise image et l'insère qu'une fois dans le html :
+      var vignette = document.createElement('img'); // on cée une balise <img>
+
+      vignette.classList.add('vignette'); // on lui ajoute la classe vignette prévue dans le CSS 
+
+      document.querySelector('#formulaire').appendChild(vignette); // on accroche vignette dans la balise foemulaire
+    }
+      document.querySelector('.vignette').src = this.src;  // seule la source est modifiée une fois la balise <img>insérée dans le html
+
+
+    }); // fin du click
+
+
+  });// fin du document ready
+  
+
+  
+
+</script>
+</body>
+</html>
