@@ -91,9 +91,10 @@ $ (function(){ // ce code s'executera une fois le document html totalement charg
 
 $('input').focus(function(){
 
-    $(this).css({ border :' 2px solid green' });     // this se refère à l'input sur lequel je suis en focus précisément sans sélectionner l'autre
+    $(this).css({ border :' 2px solid green' });   // this se refère à l'input sur lequel je suis en focus précisément sans sélectionner l'autre
  
- });$('input').blur(function(){
+ });
+ $('input').blur(function(){
  
     $(this).css({ border :''});     // avec la méthode css() je remets la bordure à son état initial (correspondant au string vide '') de l'input duquel je viens de sortir (=this)
  
