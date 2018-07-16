@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,7 @@
             <input type="submit" value="s'inscrire">
 
         </form>
+    
 
 
         <script>
@@ -35,8 +37,8 @@
             document.querySelector('form').addEventListener('submit',function(event){
                 // submit se déclanche quand on soumet un formulaire avec l'input type "submit"
 
-                // l'objet "event" dans () de notre function sert à donné (à fournir) des formations sur l'evenement actuellement déclenché. Par exemple, vous pouvez récupérer les touches enfoncées les cooredonnees du curseur, ou bloquer un un evenement tel que l'envoi (=submit) du formulaire. Ce paramètre s'écrit "e" ou "event" par convention.
-
+                // l'objet "event" dans () de notre function sert à donner (à fournir) des formations sur l'evenement actuellement déclenché. Par exemple, vous pouvez récupérer les touches enfoncées les cooredonnees du curseur, ou bloquer un evenement tel que l'envoi (=submit) du formulaire. Ce paramètre s'écrit "e" ou "event" par convention.
+ 
                var erreur = false;  // pour dire qu'il n'y a pas d'erreur au début. On mettra cette variable à true dès qu' une erreur sera produite sur le formulaire
 
                // on verifie le champ email :
@@ -61,7 +63,7 @@
                // on fin, s'il y a une erreur (erreur==true), on bloque le formulaire et on met un message à l'internaute :
                if (erreur === true) {
                    //on bloque le "submit" :
-               event.preventDefault();  // bloque l'envoi du formulaire. cette m"thode permet de bloquer l'action par défaut d'un evenememt : bloquer un lien, l'envoie d'un formulaire, la coche d'une chekbox, etc.
+               event.preventDefault();  // bloque l'envoi du formulaire. cette méthode permet de bloquer l'action par défaut d'un evenememt : bloquer un lien, l'envoie d'un formulaire, la coche d'une chekbox, etc.
                 document.querySelector('#message').textContent = 'veuillez-vérifier vos saisies !';
                }
 
