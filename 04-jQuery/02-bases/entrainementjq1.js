@@ -2,7 +2,7 @@
 
 /*---------------------------------------------------
 Document ready :
-Les deux lignes suivantes ont la meme sénification : exécuter le code js après avoir chargé le code html. Par conséquence, le lien vers la page js peut se faire n'importe où dans la page html ( dans le <head< ou avant la fermeture de <body>).
+Les deux lignes suivantes ont la meme sénification : exécuter le code js après avoir chargé le code html. Par conséquence, le lien vers la page js peut se faire n'importe où dans la page html ( dans le <head> ou avant la fermeture de <body>).
 
 $(function(){
     // ici vous mettez tout votre code jQuery
