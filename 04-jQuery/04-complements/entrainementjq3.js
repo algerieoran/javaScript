@@ -54,6 +54,39 @@ $('button').eq(0).click(function(){
 
 
 
+ //--------------------------------------------------------------------------------------------------------------------------------------------------
+ // convertir un élément du DOM en objet jQuery :
+ // utile si l'on veut utiliser des méthodes de jQuery sur des éléments du DOM.
+ 
+
+ var elementDOM = document.getElementsByClassName('galerie')[0];  // on séléctionne en js un élément du DOM, ici le premier div.galerie
+ console.log(elementDOM);
+
+
+ // Puis je le transforme en un objet jQuery :
+ var objetJquery = $(elementDOM);   // on utilise la fonction principale jQuery, alias $, pour transformer un élément du DOM en objet jQuery : vous pouvez donc lui appliquer n'importe quelle méthode sp"cifique à jery (fadeIn, animate, ...)
+ console.log(objetJquery);
+
+ objetJquery.click(function(){
+     alert(' Ce <div> est un objet jQuery sur lequel on applique une syntaxe propre à jQ');
+ });
+
+ // convertir un objet jQ en un élément du DOM :
+ var autreObjetJquery = $('.galerie'); // on séléctionne toutes les classes .galerie
+
+// pui je transforme cet objet en un élément du DOM :
+var autreElementDOM = autreObjetJquery.get();  // get() transforme un objet jQuery en un array contenant tous les éléments du DOM
+console.log(autreElementDOM);  //: on voit cet array
+
+autreElementDOM[1].addEventListener('click', function(){  //: dans l'arrey, on cible un élément en mettant un indice entre crochets []
+    alert('Ce <div> est devenu un élément du DOM sur lequel on applique une syntaxe propre à js');
+});
+
+//
+autreElementDOM = $('.galerie')[1];  // en utilisant la notation entre crochets, nous avons transformé l'objet jQuery en un objet du DOM classique. Attention, on ne peut donc plus lui appliquer des méthodes jQuery, mais uniquement du JavaScript ! Pour cibler l'indice 1 en jQuery, nous aurions utilisé eq(1) à la place de [1]
+
+
+
 
 
 

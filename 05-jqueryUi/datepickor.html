@@ -1,0 +1,51 @@
+<!-- 
+    Exercice :
+    1- Vous implémentez un calendrier (datepiker jQuery UI) dans l'input ci-dessous .
+    2- La date choisie est affichée au format dd-mm-yy dans l'input.
+    3- Quand on change la date, on affiche la date séléctionnée dans un alert.
+ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery UI -datepicker</title>
+    <!-- css : pour lier le CSS par défaut de jQuery UI :-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <!--jQ  & jQ UI-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- lien vers le fichier js de régionalisation du datepicker : -->
+    <script src="datepicker-fr.js"></script>
+    <!-- pour régionalisée : aller dans "API Documentation " du datepiker, au paragraphe "localisation". Il indique un lien gitHub du fichier à télécharger : cliquer sur la version datepicker-fr.js, puis choisir "RAW", puis clic droit et enregistrer sous... le fichier -->
+</head>
+<body>
+    <div>
+        <label>Choisissee une date</label>
+        <input type="text" id="myInput">
+    </div>
+
+    <script>
+        $( function() {
+            
+
+            $( '#myInput' ).datepicker({
+            dateFormat: "dd-mm-yy"
+            });
+
+            $('#myInput').on('change',function(){
+                alert($(this).val());
+            });
+            
+
+
+
+        } ); // fin du document ready
+    </script>
+    
+</body>
+</html>
